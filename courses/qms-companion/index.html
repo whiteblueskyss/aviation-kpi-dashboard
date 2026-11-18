@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAM.104 QMS Study Companion · Aviation Study</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+<div id="root"></div>
+<!-- Static copy of the feedback form so Netlify Forms can detect it at deploy time.
+     The live form is rendered by React (src/pages/FeedbackPage.jsx) and posts to "/". -->
+<form name="cam104-companion-feedback" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="cam104-companion-feedback">
+  <input name="bot-field">
+  <input type="checkbox" name="module-1" value="Studied">
+  <input type="checkbox" name="module-2" value="Studied">
+  <input type="checkbox" name="module-3" value="Studied">
+  <input type="checkbox" name="module-4" value="Studied">
+  <select name="ease"></select>
+  <textarea name="suggestion"></textarea>
+</form>
+<script type="module" src="./src/main.jsx"></script>
+</body>
+</html>

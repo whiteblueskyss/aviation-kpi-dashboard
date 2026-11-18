@@ -1,0 +1,6 @@
+.mast .headtxt{min-width:0;padding-right:0}
+.mast .author-credit{margin:0;padding-right:24px;color:#405b74;font-size:14px;line-height:1.5;text-align:right}
+.mastgrid{grid-template-columns:265px minmax(0,1fr) auto}
+@media(max-width:1050px){.mastgrid{grid-template-columns:265px minmax(0,1fr);row-gap:0}.mastgrid .logowrap{grid-row:span 2}.mast .author-credit{grid-column:2;text-align:left;padding:0 24px}.mast .headtxt{align-self:end}.mast .author-credit{align-self:start}}
+@media(max-width:860px){.mastgrid{grid-template-columns:110px minmax(0,1fr)}.mast .author-credit{padding:0}}
+@media(max-width:540px){.mastgrid{grid-template-columns:1fr;row-gap:5px}.mastgrid .logowrap{grid-row:auto}.mast .author-credit{grid-column:1}}

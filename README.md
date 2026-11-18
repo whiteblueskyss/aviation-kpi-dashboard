@@ -1,8 +1,20 @@
-# Aviation KPI Learning Dashboard
+# Aviation Study
 
-A React + JavaScript learning dashboard for aviation KPIs (PLF, OTP, CASK, RASK, yield, utilisation, baggage and financial measures) built on a **synthetic 2025 airline dataset**. There is no backend and no database: the JSON file ships with the app and all filtering and calculation happens in the browser.
+One website, three interactive aviation courses. A landing page introduces the courses and links to each one, and every course links back to it.
 
-> Educational simulation. Airline, airport and aircraft identities are real; every performance and financial figure is synthetic. Nothing here represents actual airline results.
+| # | Course | URL | Folder |
+|---|--------|-----|--------|
+| 1 | **Passenger Market Lab** (July 2025, IATA case study): RPK, ASK, PLF, market comparison, load-factor lab, workshop | `/courses/market-lab/` | [`courses/market-lab`](courses/market-lab) |
+| 2 | **Aviation KPI Dashboard** (CAM.145 synthetic dataset): 35 KPIs across 5 airlines and 5,000 flights | `/courses/kpi-dashboard/` | [`courses/kpi-dashboard`](courses/kpi-dashboard) |
+| 3 | **CAM.104 QMS Study Companion**: 4 modules on quality management, audits and Just Culture, with a readiness assessment | `/courses/qms-companion/` | [`courses/qms-companion`](courses/qms-companion) |
+
+Everything runs in the browser: there is no backend and no database.
+
+## Credits
+
+**All credit belongs to [Dr. Bahtiyar Eren](https://www.linkedin.com/in/bahtiyar-eren-6562b616/), Estonian Aviation Academy (Eesti Lennuakadeemia).** He created every course on this site: the lessons, datasets, exercises, question bank and slides.
+
+> This repository is an unofficial copy of the courses Dr. Eren shared publicly on LinkedIn, collected here for personal study purposes only. It is not an official Estonian Aviation Academy website and is not endorsed by Dr. Eren or the Academy. For the original material, follow his work on [LinkedIn](https://www.linkedin.com/in/bahtiyar-eren-6562b616/).
 
 ## Quick start
 
@@ -10,60 +22,59 @@ Requires Node.js 18 or newer.
 
 ```bash
 npm install
-npm run dev        # development server (http://localhost:5173)
-npm test           # 24 tests for the KPI engine
-npm run build      # production build into dist/
+npm run dev        # http://localhost:5173  (landing page; courses at /courses/<name>/)
+npm test           # KPI engine tests
+npm run build      # production build of the landing page and all courses into dist/
 npm run preview    # serve the production build locally
 ```
-
-## What is in the app
-
-- Single-airline and compare-airlines views, with filters for month range, route (both directions merged), aircraft type and sector distance.
-- 35 KPIs grouped as Commercial, Cargo, Operations, Baggage & service and Financial, each with a definition, formula, "careful" note and a worked example that shows the numbers behind the result.
-- A monthly trend chart (accessible SVG, hover or keyboard focus for values, plus a table of exact figures).
-- A comparison table, a data viewer with CSV download, the data dictionary, notes and sources.
-- A print-friendly layout.
 
 ## Project structure
 
 ```
-public/data/CAM145_SYNTHETIC_all_data_2025.json   the dataset (fetched by the app)
-src/kpi/metrics.js      KPI specs: numerator, denominator, scale, unit, definition text
-src/kpi/engine.js       filters, totals and the evaluate() function
-src/kpi/format.js       number and unit formatting
-src/kpi/exportCsv.js    CSV export
-src/components/         FilterBar, KpiCard, CompareTable, Explainer, TrendChart, DataPage
-src/App.jsx             state and page layout
-tests/engine.test.js    reference-value and lesson-example tests
+index.html                 landing page (tab title "Aviation Study")
+src/                       landing page source
+  courses.js               course catalogue: titles, links, descriptions (single source of truth)
+  App.jsx                  landing page layout
+  components/              DepartureBoard, BoardingPass, LoadFactorLab
+  shared/AllCoursesLink.jsx  the "← Aviation Study" link shown inside every course
+  styles/landing.css
+courses/
+  market-lab/              Course 1: index.html, src/, README.md
+  kpi-dashboard/           Course 2: index.html, src/, tests/, README.md
+  qms-companion/           Course 3: index.html, src/, README.md
+public/
+  favicon.svg              shared icon
+  courses/kpi-dashboard/data/   CAM145 dataset (served at /courses/kpi-dashboard/data/...)
+  courses/qms-companion/slides/ four module slide PDFs (served at /courses/qms-companion/slides/...)
+vite.config.js             multi-page build: one entry per page
+vercel.json / netlify.toml deploy settings
 ```
 
-## How the KPIs are calculated
+### How the pages fit together
 
-Every KPI is `(numerator ÷ denominator) × scale`, and the engine always **adds the totals first and divides last**. It never averages percentages, because flights of different lengths and sizes carry different weight. Key conventions come from the dataset's own notes:
+This is a Vite **multi-page** build. Each course is its own HTML page with its own React app and stylesheet, so the courses cannot break each other's styles or state. They share only `package.json`, the build, the favicon and the small "All courses" link.
 
-- **PLF** = total RPK ÷ total ASK. **CLF** = total CTK ÷ total ACTK (n/a when ACTK is zero, as for Ryanair).
-- **OTP** = operated sectors arriving under 15 minutes late and not diverted ÷ operated sectors. Early arrivals are on time.
-- **Mean arrival delay** uses `max(delay, 0)`, so early arrivals count as zero.
-- **Cancellation rate** uses scheduled sectors as its base. **Diversion rate** uses operated sectors.
-- **CASK** = operating cost ÷ ASK, and **RASK** = operating revenue ÷ ASK (passenger + ancillary + cargo). **Yield** = passenger revenue ÷ RPK.
-- **Mishandled bags** = delayed + lost + damaged (mutually exclusive), per 1,000 passengers.
-- **Profit and cash flows are flows** (added over the selected months). **Debt is a stock**: the last selected month is used, never a sum of months.
-- Aircraft and pilot utilisation, net profit, cash flows and debt are only defined for whole airlines, so they show "n/a" when a route or distance filter is applied.
+### Adding a course
 
-The tests check these rules against the reference dashboard's values (for example Turkish Airlines: 150,915 passengers, PLF 84.33%, OTP 85.67%, CLF 48.35%, CASK €0.0728, operating profit €9,020,454; all five airlines: 706,563 passengers, PLF 83.06%) and against the worked examples from the lessons.
+1. Create `courses/<slug>/index.html` and `courses/<slug>/src/`. In the HTML, load the script with a relative path: `<script type="module" src="./src/main.jsx">`.
+2. Add the page to `build.rollupOptions.input` in `vite.config.js`.
+3. Add an entry to `COURSES` in `src/courses.js`. The landing page cards, departure board and footer update automatically.
+4. Put static files in `public/courses/<slug>/` and reference them as `` `${import.meta.env.BASE_URL}courses/<slug>/...` ``.
+5. Render `<AllCoursesLink current="<slug>" />` in the course's sidebar or header.
 
 ## Deploying
 
-The build uses relative paths (`base: './'`), so it works at the root of a site or under a sub-path.
+- **Vercel** (current host): the Vite preset works as is. `vercel.json` sets the build command and `dist` output, and adds a trailing slash so `/courses/market-lab` resolves to `/courses/market-lab/`.
+- **Netlify**: `netlify.toml` sets the build. The QMS feedback form uses Netlify Forms, so it only sends submissions when the site is hosted on Netlify. On other hosts it shows a "could not be sent" message.
 
-- **Netlify**: connect the GitHub repository. `netlify.toml` already sets the build command and the `dist` folder.
-- **Vercel**: import the repository; the Vite preset works with no changes.
-- **GitHub Pages**: build with `npm run build` and publish the `dist` folder (for example with a GitHub Actions workflow).
+The site is built for the root of a domain (`base: '/'`).
 
-## Changing the data
+## Content and data notices
 
-Replace the file in `public/data/` with a file of the same structure (tables: `airlines`, `airports`, `routes`, `flights`, `aircraftDays`, `crewDays`, `finance`, plus `notes`, `sources`, `dictionary` and `seed`). If your file name differs, update `DATA_URL` and `DATA_FILENAME` in `src/data/loadData.js`. The data is about 6 MB; if it grows much larger, consider splitting it by airline or moving to a small API.
+- KPI Dashboard: real airline and airport identities, **synthetic** performance and financial figures.
+- Passenger Market Lab: **historical** IATA data (published 29 August 2025), not current market reporting.
+- CAM.104: © 2026 Dr. Bahtiyar Eren, Estonian Aviation Academy. Marked "For CAM.104 students only. Do not copy or distribute." Check that publishing it on a public site is permitted.
 
-## Credits
+## History
 
-The dataset (`CAM145_SYNTHETIC_all_data_2025.json`) was prepared by Dr. Bahtiyar Eren for the CAM.145 course, as stated in its notes, with AI assistance. This application is an independent learning project that reads the same data; it does not reuse the original dashboard's code, text or branding. Check the dataset's terms before publishing it publicly.
+This repository started as `aviation-kpi-dashboard`. In version 2.0.0 it became **Aviation Study**: the KPI dashboard moved to `courses/kpi-dashboard` (git history kept), and the CAM.104 companion and the Market Lab, previously separate projects, were added as `courses/qms-companion` and `courses/market-lab`. Their individual `package.json`, `vite.config.js`, `netlify.toml` and `.gitignore` files were merged into the root files, which use the same dependencies.

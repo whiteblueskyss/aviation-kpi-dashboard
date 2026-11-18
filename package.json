@@ -1,8 +1,8 @@
 {
-  "name": "aviation-kpi-dashboard",
+  "name": "aviation-study",
   "private": true,
-  "version": "1.0.0",
-  "description": "Aviation KPI learning dashboard built with React and JavaScript on a synthetic 2025 dataset.",
+  "version": "2.0.0",
+  "description": "Aviation Study: a landing page and three interactive aviation courses (Passenger Market Lab, Aviation KPI Dashboard, CAM.104 QMS Study Companion) in one React + Vite site.",
   "type": "module",
   "scripts": {
     "dev": "vite",

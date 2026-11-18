@@ -1,3 +1,4 @@
+# Netlify alternative to Vercel. One build produces the landing page and all three courses.
 [build]
   command = "npm run build"
   publish = "dist"

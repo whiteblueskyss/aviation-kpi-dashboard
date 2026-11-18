@@ -4,7 +4,7 @@ import { indexData, makeContext, evaluateById, DEFAULT_FILTERS, monthlySeries, r
 import { METRIC_BY_ID, METRICS } from '../src/kpi/metrics.js';
 import { toCsv } from '../src/kpi/exportCsv.js';
 
-const raw = JSON.parse(readFileSync(new URL('../public/data/CAM145_SYNTHETIC_all_data_2025.json', import.meta.url), 'utf8'));
+const raw = JSON.parse(readFileSync(new URL('../../../public/courses/kpi-dashboard/data/CAM145_SYNTHETIC_all_data_2025.json', import.meta.url), 'utf8'));
 const data = indexData(raw);
 const ALL = ['TK', 'LH', 'AY', 'BT', 'FR'];
 

@@ -1,0 +1,25 @@
+/* "Back to Aviation Study" link used inside every course. Prefixed .as- to avoid clashing with course styles. */
+.as-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.25;
+  transition: background-color .15s ease, transform .15s ease;
+}
+.as-home:hover { transform: translateX(-2px); }
+.as-home:focus-visible { outline: 3px solid #f59e0b; outline-offset: 2px; }
+.as-home__arrow { font-size: 1.1rem; font-weight: 700; }
+.as-home__text { display: flex; flex-direction: column; min-width: 0; }
+.as-home__site { font-size: .86rem; font-weight: 700; letter-spacing: .2px; }
+.as-home__sub { font-size: .72rem; opacity: .8; }
+
+.as-home--light { background: #eef3fa; color: #0b2a5b; border: 1px solid #d6e1ee; }
+.as-home--light:hover { background: #e2ebf7; }
+
+.as-home--dark { background: rgba(255, 255, 255, .08); color: #fff; border: 1px solid rgba(255, 255, 255, .18); }
+.as-home--dark:hover { background: rgba(255, 255, 255, .16); }
