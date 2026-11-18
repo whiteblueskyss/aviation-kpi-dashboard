@@ -12,9 +12,9 @@ Everything runs in the browser: there is no backend and no database.
 
 ## Credits
 
-**All credit belongs to [Dr. Bahtiyar Eren](https://www.linkedin.com/in/bahtiyar-eren-6562b616/), Estonian Aviation Academy (Eesti Lennuakadeemia).** He created every course on this site: the lessons, datasets, exercises, question bank and slides.
+**All credit belongs to [Dr. Bahtiyar Eren](https://www.linkedin.com/in/bahtiyar-eren-6562b616/), Eesti Lennuakadeemia · Estonian Aviation Academy.** He created every course on this site: the lessons, datasets, exercises, question bank and slides.
 
-> This repository is an unofficial copy of the courses Dr. Eren shared publicly on LinkedIn, collected here for personal study purposes only. It is not an official Estonian Aviation Academy website and is not endorsed by Dr. Eren or the Academy. For the original material, follow his work on [LinkedIn](https://www.linkedin.com/in/bahtiyar-eren-6562b616/).
+> This repository is an unofficial copy of the courses Dr. Eren shared publicly on LinkedIn, collected here for personal study purposes only. It is not an official Eesti Lennuakadeemia (Estonian Aviation Academy) website and is not endorsed by Dr. Eren or the Academy. For the original material, follow his work on [LinkedIn](https://www.linkedin.com/in/bahtiyar-eren-6562b616/).
 
 ## Quick start
 
@@ -73,7 +73,7 @@ The site is built for the root of a domain (`base: '/'`).
 
 - KPI Dashboard: real airline and airport identities, **synthetic** performance and financial figures.
 - Passenger Market Lab: **historical** IATA data (published 29 August 2025), not current market reporting.
-- CAM.104: © 2026 Dr. Bahtiyar Eren, Estonian Aviation Academy. Marked "For CAM.104 students only. Do not copy or distribute." Check that publishing it on a public site is permitted.
+- CAM.104: © 2026 Dr. Bahtiyar Eren, Eesti Lennuakadeemia · Estonian Aviation Academy.
 
 ## History
 

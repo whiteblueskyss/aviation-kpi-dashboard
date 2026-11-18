@@ -96,7 +96,7 @@ export default function App() {
           <div className="cloud cloud--b" aria-hidden="true" />
           <div className="wrap hero__inner">
             <div className="hero__copy">
-              <p className="eyebrow eyebrow--light">Courses by Dr. Bahtiyar Eren · Estonian Aviation Academy</p>
+              <p className="eyebrow eyebrow--light">Courses by Dr. Bahtiyar Eren · Eesti Lennuakadeemia · Estonian Aviation Academy</p>
               <h1>
                 Learn how airlines <span className="hero__accent">really work.</span>
               </h1>
@@ -254,18 +254,18 @@ export default function App() {
 
       <section className="credits" aria-labelledby="credits-title">
         <div className="wrap credits__inner">
-          <img src={eavaLogo} alt="Eesti Lennuakadeemia, Estonian Aviation Academy" className="credits__logo" />
+          <img src={eavaLogo} alt="Eesti Lennuakadeemia · Estonian Aviation Academy" className="credits__logo" />
           <div>
             <p className="eyebrow">Credits</p>
             <h2 id="credits-title">All credit to Dr. Bahtiyar Eren</h2>
             <p>
               Every course on this site, including the lessons, datasets, exercises, questions and slides, was created by{' '}
-              <b>Dr. Bahtiyar Eren</b> of the <b>Estonian Aviation Academy</b> (Eesti Lennuakadeemia). The ideas, teaching
+              <b>Dr. Bahtiyar Eren</b> of <b>Eesti Lennuakadeemia · Estonian Aviation Academy</b>. The ideas, teaching
               design and course content are entirely his work.
             </p>
             <p className="credits__notice">
               <b>Please note:</b> {SITE_NAME} is an unofficial copy of the courses Dr. Eren shared publicly on LinkedIn,
-              collected here for personal study purposes only. It is not an official Estonian Aviation Academy website and is
+              collected here for personal study purposes only. It is not an official Eesti Lennuakadeemia (Estonian Aviation Academy) website and is
               not endorsed by Dr. Eren or the Academy. For the original material, please follow his work on LinkedIn.
             </p>
             <a
@@ -285,10 +285,10 @@ export default function App() {
 
       <footer className="footer">
         <div className="wrap footer__inner">
-          <img src={eavaLogo} alt="Eesti Lennuakadeemia, Estonian Aviation Academy" className="footer__logo" />
+          <img src={eavaLogo} alt="Eesti Lennuakadeemia · Estonian Aviation Academy" className="footer__logo" />
           <div className="footer__text">
             <p>
-              <b>{SITE_NAME}</b>: all courses, materials and datasets © Dr. Bahtiyar Eren, Estonian Aviation Academy. Copied
+              <b>{SITE_NAME}</b>: all courses, materials and datasets © Dr. Bahtiyar Eren, Eesti Lennuakadeemia · Estonian Aviation Academy. Copied
               from his public LinkedIn posts for study purposes only.{' '}
               <a href="https://www.linkedin.com/in/bahtiyar-eren-6562b616/" target="_blank" rel="noopener noreferrer">
                 LinkedIn profile ↗
